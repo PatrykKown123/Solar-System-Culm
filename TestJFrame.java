@@ -17,8 +17,8 @@ public class TestJFrame {
 		PlanetButton mars = new PlanetButton("Mars", Color.red, 600, 403, 45, 45);
 		PlanetButton jupiter = new PlanetButton("Jupiter", Color.cyan, 720, 377, 100, 100);
 		PlanetButton saturn = new PlanetButton("Saturn", Color.YELLOW, 900, 383, 90, 90);
-		PlanetButton uranus = new PlanetButton("Uranus", Color.blue, 1100, 390, 75, 75);
-		PlanetButton neptune = new PlanetButton("Neptune", Color.blue, 1300, 387, 75, 75);
+		PlanetButton uranus = new PlanetButton("Uranus", Color.blue, 1050, 390, 75, 75);
+       		PlanetButton neptune = new PlanetButton("Neptune", Color.blue, 1175, 387, 75, 75);
 		JLabel lab = new JLabel("This is the Sun");
 		JPanel p = new JPanel();
 		Container c = f.getContentPane();
