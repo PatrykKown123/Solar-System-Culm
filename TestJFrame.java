@@ -23,7 +23,7 @@ public class TestJFrame {
 		JPanel p = new JPanel();
 		Container c = f.getContentPane();
 
-		f.setSize(new Dimension(1500, 800));
+		f.setSize(new Dimension(1400, 800));
 		f.setLocationRelativeTo(null);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
