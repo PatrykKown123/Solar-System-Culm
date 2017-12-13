@@ -7,7 +7,7 @@ public class PlanetButton extends JButton {
 
 	private Color buttonColor;
 
-	public PlanetButton(String label, Color c, int x, int y, int width, int height) {
+	public PlanetButton(String label, Color c, int x, int y, int width, int height, ImageIcon gif) {
 		super(label);
 
 		buttonColor = c;
