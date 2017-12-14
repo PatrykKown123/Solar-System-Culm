@@ -16,29 +16,33 @@ public class TestJFrame {
 		JFrame f = new JFrame("Anton's JFrame.");
 
 		// Here we make the buttons
-		mercury = new PlanetButton("Mercury", Color.gray, 300, 408, 35, 35,
-				new ImageIcon(TestJFrame.class.getClassLoader().getResource("")));
+		sun = new PlanetButton("Sun", Color.yellow, 0, 380, 250, 250,
+               		new ImageIcon(JFrame.class.getResource("")));
 
-		venus = new PlanetButton("Venus", Color.DARK_GRAY, 380, 397, 55, 55,
-				new ImageIcon(TestJFrame.class.getClassLoader().getResource("")));
+       		mercury = new PlanetButton("Mercury", Color.gray, 300, 408, 35, 35,
+                	new ImageIcon(JFrame.class.getResource("")));
 
-		earth = new PlanetButton("Earth", Color.BLUE, 490, 395, 60, 60,
-				new ImageIcon(TestJFrame.class.getClassLoader().getResource("")));
+        	venus = new PlanetButton("Venus", Color.DARK_GRAY, 380, 397, 55, 55,
+                	new ImageIcon(JFrame.class.getResource("")));
 
-		mars = new PlanetButton("Mars", Color.red, 600, 403, 45, 45,
-				new ImageIcon(TestJFrame.class.getClassLoader().getResource("")));
+        	earth = new PlanetButton("Earth", Color.BLUE, 490, 395, 60, 60,
+               		new ImageIcon(JFrame.class.getResource("")));
 
-		jupiter = new PlanetButton("Jupiter", Color.cyan, 720, 377, 100, 100,
-				new ImageIcon(TestJFrame.class.getClassLoader().getResource("")));
+        	mars = new PlanetButton("Mars", Color.red, 600, 403, 45, 45,
+                	new ImageIcon(JFrame.class.getResource("")));
 
-		saturn = new PlanetButton("Saturn", Color.YELLOW, 900, 383, 90, 90,
-				new ImageIcon(TestJFrame.class.getClassLoader().getResource("")));
+        	jupiter = new PlanetButton("Jupiter", Color.cyan, 720, 377, 100, 100,
+                	new ImageIcon(JFrame.class.getResource("")));
 
-		uranus = new PlanetButton("Uranus", Color.blue, 1050, 390, 75, 75,
-				new ImageIcon(TestJFrame.class.getClassLoader().getResource("")));
+       		saturn = new PlanetButton("Saturn", Color.YELLOW, 900, 383, 90, 90,
+                	new ImageIcon(JFrame.class.getResource("")));
 
-		neptune = new PlanetButton("Neptune", Color.blue, 1175, 387, 75, 75,
-				new ImageIcon(TestJFrame.class.getClassLoader().getResource("")));
+        	uranus = new PlanetButton("Uranus", Color.blue, 1050, 390, 75, 75,
+               		new ImageIcon(JFrame.class.getResource("")));
+
+        	neptune = new PlanetButton("Neptune", Color.blue, 1175, 387, 75, 75,
+                	new ImageIcon(JFrame.class.getResource("")));
+		
 		JPanel p = new JPanel();
 
 		// Sets the size of the JFrame by pixels
