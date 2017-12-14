@@ -3,46 +3,51 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class TestJFrame {
 
 	static PlanetButton sun, mercury, venus, earth, mars, jupiter, saturn, uranus, neptune;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// The JFrame
 		JFrame f = new JFrame("Anton's JFrame.");
 
 		// Here we make the buttons
 		sun = new PlanetButton("Sun", Color.yellow, 0, 300, 250, 250,
-			new ImageIcon(TestJFrame.class.getResource("")));
+				new ImageIcon(TestJFrame.class.getResource("sun2.jpg")));
 
-       		mercury = new PlanetButton("Mercury", Color.gray, 300, 408, 35, 35,
-                	new ImageIcon(JFrame.class.getResource("")));
+		mercury = new PlanetButton("Mercury", Color.gray, 300, 408, 35, 35,
+				new ImageIcon(TestJFrame.class.getResource("mercury.jpg")));
 
-        	venus = new PlanetButton("Venus", Color.DARK_GRAY, 380, 397, 55, 55,
-                	new ImageIcon(JFrame.class.getResource("")));
+		venus = new PlanetButton("Venus", Color.DARK_GRAY, 380, 397, 55, 55,
+				new ImageIcon(TestJFrame.class.getResource("venus.jpg")));
 
-        	earth = new PlanetButton("Earth", Color.BLUE, 490, 395, 60, 60,
-               		new ImageIcon(JFrame.class.getResource("")));
+		earth = new PlanetButton("Earth", Color.BLUE, 490, 395, 60, 60,
+				new ImageIcon(TestJFrame.class.getResource("earth.jpg")));
 
-        	mars = new PlanetButton("Mars", Color.red, 600, 403, 45, 45,
-                	new ImageIcon(JFrame.class.getResource("")));
+		mars = new PlanetButton("Mars", Color.red, 600, 403, 45, 45,
+				new ImageIcon(TestJFrame.class.getResource("mars.jpg")));
 
-        	jupiter = new PlanetButton("Jupiter", Color.cyan, 720, 377, 100, 100,
-                	new ImageIcon(JFrame.class.getResource("")));
+		jupiter = new PlanetButton("Jupiter", Color.cyan, 720, 377, 100, 100,
+				new ImageIcon(TestJFrame.class.getResource("jupiter.jpg")));
 
-       		saturn = new PlanetButton("Saturn", Color.YELLOW, 900, 383, 90, 90,
-                	new ImageIcon(JFrame.class.getResource("")));
+		saturn = new PlanetButton("Saturn", Color.YELLOW, 900, 383, 90, 90,
+				new ImageIcon(TestJFrame.class.getResource("saturn.jpg")));
 
-        	uranus = new PlanetButton("Uranus", Color.blue, 1050, 390, 75, 75,
-               		new ImageIcon(JFrame.class.getResource("")));
+		uranus = new PlanetButton("Uranus", Color.blue, 1050, 390, 75, 75,
+				new ImageIcon(TestJFrame.class.getResource("uranus.jpg")));
 
-        	neptune = new PlanetButton("Neptune", Color.blue, 1175, 387, 75, 75,
-                	new ImageIcon(JFrame.class.getResource("")));
-		
+		neptune = new PlanetButton("Neptune", Color.blue, 1175, 387, 75, 75,
+				new ImageIcon(TestJFrame.class.getResource("neptune.jpg")));
 		JPanel p = new JPanel();
 
 		// Sets the size of the JFrame by pixels
@@ -89,12 +94,19 @@ public class TestJFrame {
 		f.setVisible(true);
 	}
 
-	public static void sunAction() {
+	public static void sunAction() throws IOException {
 		sun.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "You clicked on the Sun");
+				BufferedReader fr = new BufferedReader(
+						new FileReader("C:\\Users\\Anton\\workspace\\JFrame Test\\src\\sun facts.txt"));
+				BufferedReader shortInfo = new BufferedReader(
+						new FileReader("C:\\Users\\Anton\\workspace\\JFrame Test\\src\\sun facts.txt"));
+
+				Sun s = new Sun(fr, shortInfo);
+
+				s.bulidSunJFrame();
 			}
 		});
 	}
