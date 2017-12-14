@@ -16,8 +16,8 @@ public class TestJFrame {
 		JFrame f = new JFrame("Anton's JFrame.");
 
 		// Here we make the buttons
-		sun = new PlanetButton("Sun", Color.yellow, 0, 380, 250, 250,
-               		new ImageIcon(JFrame.class.getResource("")));
+		sun = new PlanetButton("Sun", Color.yellow, 0, 300, 250, 250,
+			new ImageIcon(TestJFrame.class.getResource("")));
 
        		mercury = new PlanetButton("Mercury", Color.gray, 300, 408, 35, 35,
                 	new ImageIcon(JFrame.class.getResource("")));
