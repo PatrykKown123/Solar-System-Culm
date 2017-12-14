@@ -1,48 +1,59 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package culminating;
 
+import java.awt.Dimension;
 import java.io.BufferedReader;
 
-/**
- *
- * @author 557917812
- */
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 public class Sun {
 
-    private BufferedReader info, shortInfo;
-    private int size;
+	private BufferedReader info, shortInfo;
+	private int size;
 
-    public Sun(BufferedReader fr, BufferedReader shortInfo) {
-        info = fr;
-        size = 1391400;
-        this.shortInfo = shortInfo;
-    }
+	public Sun(BufferedReader fr, BufferedReader shortInfo) {
+		info = fr;
+		size = 1391400;
+		this.shortInfo = shortInfo;
+	}
 
-    public BufferedReader getInfo() {
-        return info;
-    }
+	public void bulidSunJFrame() {
+		JFrame frame = new JFrame("The Sun");
+		JPanel panel = new JPanel();
+		JLabel backGround = new JLabel(new ImageIcon(Sun.class.getResource("sun.jpg")));
 
-    public void setInfo(BufferedReader info) {
-        this.info = info;
-    }
+		panel.add(backGround);
+		frame.add(panel);
 
-    public int getSize() {
-        return size;
-    }
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
+		panel.setLayout(null);
+		frame.setSize(new Dimension(500, 500));
+		frame.setVisible(true);
+	}
 
-    public void setSize(int size) {
-        this.size = size;
-    }
+	public BufferedReader getInfo() {
+		return info;
+	}
 
-    public BufferedReader getShortInfo() {
-        return shortInfo;
-    }
+	public void setInfo(BufferedReader info) {
+		this.info = info;
+	}
 
-    public void setShortInfo(BufferedReader shortInfo) {
-        this.shortInfo = shortInfo;
-    }
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+
+	public BufferedReader getShortInfo() {
+		return shortInfo;
+	}
+
+	public void setShortInfo(BufferedReader shortInfo) {
+		this.shortInfo = shortInfo;
+	}
 }
