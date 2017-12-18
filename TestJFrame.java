@@ -18,6 +18,10 @@ public class TestJFrame {
 	static PlanetButton sun, mercury, venus, earth, mars, jupiter, saturn, uranus, neptune;
 
 	public static void main(String[] args) throws IOException {
+
+		BufferedReader descBR = new BufferedReader(
+				new FileReader("C:\\Users\\Anton\\workspace\\JFrame Test\\src\\sun facts.txt"));
+
 		// The JFrame
 		JFrame f = new JFrame("Anton's JFrame.");
 
@@ -80,7 +84,7 @@ public class TestJFrame {
 		// sets the background color of the JFrame ot black
 		p.setBackground(Color.BLACK);
 
-		sunAction();
+		sunAction(descBR);
 		mercuryAction();
 		venusAction();
 		earthAction();
@@ -94,19 +98,40 @@ public class TestJFrame {
 		f.setVisible(true);
 	}
 
-	public static void sunAction() throws IOException {
+	public static void sunAction(BufferedReader fr) {
 		sun.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				BufferedReader fr = new BufferedReader(
-						new FileReader("C:\\Users\\Anton\\workspace\\JFrame Test\\src\\sun facts.txt"));
-				BufferedReader shortInfo = new BufferedReader(
-						new FileReader("C:\\Users\\Anton\\workspace\\JFrame Test\\src\\sun facts.txt"));
+				String desc = "";
+				String shortInfo = "";
+				String line = null;
+				boolean foundATSymbol = false;
 
-				Sun s = new Sun(fr, shortInfo);
+				try {
 
-				s.bulidSunJFrame();
+					// Reads from the text file
+					// This reads everything and the short description too
+					while ((line = fr.readLine()) != null) {
+						desc += line;
+						if (line.contains("@")) {
+							foundATSymbol = true;
+						}
+						if (!foundATSymbol) {
+							shortInfo += line;
+						}
+					}
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+
+				// Replaces the @ character in the text file with and empty string so that the
+				// character won't pop up in the description
+				desc = desc.replace("@", "");
+
+				Sun s = new Sun(desc, shortInfo);
+
+				s.bulidSunJFrame(fr);
 			}
 		});
 	}

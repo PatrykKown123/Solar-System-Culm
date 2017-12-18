@@ -1,59 +1,45 @@
 
 import java.awt.Dimension;
+import java.awt.Image;
 import java.io.BufferedReader;
+import java.text.DecimalFormat;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 public class Sun {
 
-	private BufferedReader info, shortInfo;
-	private int size;
+	private String info, shortInfo;
 
-	public Sun(BufferedReader fr, BufferedReader shortInfo) {
-		info = fr;
-		size = 1391400;
+	private final int width = 900, height = 600;
+
+	public Sun(String wholeInfo, String shortInfo) {
+		info = wholeInfo;
 		this.shortInfo = shortInfo;
 	}
 
-	public void bulidSunJFrame() {
+	// Builds the Sun's JFrame when the sun is clicked
+	public void bulidSunJFrame(BufferedReader fr) {
 		JFrame frame = new JFrame("The Sun");
-		JPanel panel = new JPanel();
-		JLabel backGround = new JLabel(new ImageIcon(Sun.class.getResource("sun.jpg")));
 
-		panel.add(backGround);
-		frame.add(panel);
+		frame.setSize(new Dimension(width, height));
+		// Gets the ImageIcon and converts it to a Image and make it fit to the size of
+		// the JFrame and then converts it back to a ImageIcon
+		ImageIcon icon = new ImageIcon(Sun.class.getResource("Sun.jpg"));
+		Image image = icon.getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
+		icon = new ImageIcon(image);
 
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JLabel imageLabel = new JLabel(icon);
+
+		// frame.setContentPane(imageLabel);
+		JLabel desc = new JLabel("<html>" + info + "</html>");
+
+		frame.add(desc);
+
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
-		panel.setLayout(null);
-		frame.setSize(new Dimension(500, 500));
+
 		frame.setVisible(true);
-	}
-
-	public BufferedReader getInfo() {
-		return info;
-	}
-
-	public void setInfo(BufferedReader info) {
-		this.info = info;
-	}
-
-	public int getSize() {
-		return size;
-	}
-
-	public void setSize(int size) {
-		this.size = size;
-	}
-
-	public BufferedReader getShortInfo() {
-		return shortInfo;
-	}
-
-	public void setShortInfo(BufferedReader shortInfo) {
-		this.shortInfo = shortInfo;
 	}
 }
