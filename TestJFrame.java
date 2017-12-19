@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -20,7 +21,7 @@ public class TestJFrame {
 	public static void main(String[] args) throws IOException {
 
 		BufferedReader descBR = new BufferedReader(
-				new FileReader("C:\\Users\\Anton\\workspace\\JFrame Test\\src\\sun facts.txt"));
+				new InputStreamReader(TestJFrame.class.getResourceAsStream("sun facts.txt")));
 
 		// The JFrame
 		JFrame f = new JFrame("Anton's JFrame.");

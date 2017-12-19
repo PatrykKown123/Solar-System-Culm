@@ -1,12 +1,13 @@
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.io.BufferedReader;
-import java.text.DecimalFormat;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 
 public class Sun {
 
@@ -31,15 +32,31 @@ public class Sun {
 		icon = new ImageIcon(image);
 
 		JLabel imageLabel = new JLabel(icon);
+		JLayeredPane layers = new JLayeredPane();
+		layers.setLayout(null);
+		JLabel desc = new JLabel("<html><H3>" + info + "</H3></html>");
 
-		// frame.setContentPane(imageLabel);
-		JLabel desc = new JLabel("<html>" + info + "</html>");
+		desc.setForeground(Color.WHITE);
+		layers.add(imageLabel, new Integer(1));
+		layers.add(desc, new Integer(2));
 
-		frame.add(desc);
+		imageLabel.setBounds(0, 0, width, height);
+
+		desc.setBounds(0, 200, width - 30, height - 200);
+
+		frame.add(layers);
 
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 
 		frame.setVisible(true);
+	}
+
+	public String getShortInfo() {
+		return shortInfo;
+	}
+
+	public void setShortInfo(String shortInfo) {
+		this.shortInfo = shortInfo;
 	}
 }
