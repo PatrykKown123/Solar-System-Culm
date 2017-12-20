@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package culminating;
 
 import java.awt.Color;
@@ -14,27 +9,23 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
-/**
- *
- * @author 557917812
- */
-public class Mercury {
+public class Venus {
 
     private String info, shortInfo;
     private final int width = 900, height = 600;
 
-    public Mercury(String fr, String shortInfo) {
+    public Venus(String fr, String shortInfo) {
         info = fr;
         this.shortInfo = shortInfo;
     }
 
-    public void bulidMercuryJFrame(BufferedReader fr) {
-        JFrame frame = new JFrame("Mercury");
+    public void bulidVenusJFrame(BufferedReader fr) {
+        JFrame frame = new JFrame("Venus");
 
         frame.setSize(new Dimension(width, height));
         // Gets the ImageIcon and converts it to a Image and make it fit to the size of
         // the JFrame and then converts it back to a ImageIcon
-        ImageIcon icon = new ImageIcon(Sun.class.getResource("mercury2.jpg"));
+        ImageIcon icon = new ImageIcon(Sun.class.getResource("venus2.jpg"));
         Image image = icon.getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
         icon = new ImageIcon(image);
 
