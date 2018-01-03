@@ -1,11 +1,23 @@
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.image.ImageObserver;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.AttributedCharacterIterator;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -14,6 +26,11 @@ import javax.swing.JPanel;
 public class TestJFrame {
 
 	static PlanetButton sun, mercury, venus, earth, mars, jupiter, saturn, uranus, neptune;
+
+	static Sun sunInfo = null;
+	static Mercury merInfo = null;
+	static Venus venusInfo = null;
+	static Earth earthInfo = null;
 
 	public static void main(String[] args) throws IOException {
 
@@ -88,170 +105,191 @@ public class TestJFrame {
 		// Adds the panel to the JFrame, with all the buttons on it
 		f.add(p);
 
-		// sets the background color of the JFrame ot black
+		// sets the background color of the JFrame to black
 		p.setBackground(Color.BLACK);
 
-		sunAction(descBR);
-		mercuryAction(descBR2);
-		venusAction(descBR3);
-		earthAction(descBR4);
+		sunInfo = getSun(descBR);
+		addSunAction();
+
+		merInfo = getMercury(descBR2);
+		mercuryAction();
+
+		venusInfo = getVenus(descBR3);
+		venusAction();
+		earthInfo = getEarth(descBR4);
+		earthAction();
+
 		marsAction();
 		jupiterAction();
 		saturnAction();
 		uranusAction();
 		neptuneAction();
 
+		sun.setToolTipText(sunInfo.getShortInfo());
+		mercury.setToolTipText(merInfo.getShortInfo());
+		venus.setToolTipText(venusInfo.getShortInfo());
+		earth.setToolTipText(earthInfo.getShortInfo());
+
 		// Makes the JFrame visible
 		f.setVisible(true);
 	}
 
-	public static void sunAction(BufferedReader fr) {
+	static Sun getSun(BufferedReader fr) {
+		String desc = "";
+		String shortInfo = "";
+		String line = null;
+		boolean foundATSymbol = false;
+
+		try {
+			// Reads from the text file
+			// This reads everything and the short description too
+			while ((line = fr.readLine()) != null) {
+				desc += line;
+				if (line.contains("@")) {
+					foundATSymbol = true;
+				}
+				if (!foundATSymbol) {
+					shortInfo += "<br>" + line;
+				}
+			}
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		// Replaces the @ character in the text file with and empty string so that the
+		// character won't pop up in the description
+		desc = desc.replace("@", "");
+
+		return new Sun(desc, "<html>" + shortInfo + "</html>");
+	}
+
+	public static void addSunAction() {
 		sun.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String desc = "";
-				String shortInfo = "";
-				String line = null;
-				boolean foundATSymbol = false;
-
-				try {
-					// Reads from the text file
-					// This reads everything and the short description too
-					while ((line = fr.readLine()) != null) {
-						desc += line;
-						if (line.contains("@")) {
-							foundATSymbol = true;
-						}
-						if (!foundATSymbol) {
-							shortInfo += line;
-						}
-					}
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-
-				// Replaces the @ character in the text file with and empty string so that the
-				// character won't pop up in the description
-				desc = desc.replace("@", "");
-
-				Sun s = new Sun(desc, shortInfo);
-
-				s.bulidSunJFrame(fr);
+				sunInfo.bulidSunJFrame();
 			}
 		});
 	}
 
-	public static void mercuryAction(BufferedReader fr) {
+	public static Mercury getMercury(BufferedReader fr) {
+		String desc = "";
+		String shortInfo = "";
+		String line = null;
+		boolean foundATSymbol = false;
+
+		try {
+
+			// Reads from the text file
+			// This reads everything and the short description too
+			while ((line = fr.readLine()) != null) {
+				desc += line;
+				if (line.contains("@")) {
+					foundATSymbol = true;
+				}
+				if (!foundATSymbol) {
+					shortInfo += "<br>" + line;
+				}
+			}
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		// Replaces the @ character in the text file with and empty string so that the
+		// character won't pop up in the description
+		desc = desc.replace("@", "");
+
+		return new Mercury(desc, "<html>" + shortInfo + "</html>");
+	}
+
+	public static void mercuryAction() {
 		mercury.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String desc = "";
-				String shortInfo = "";
-				String line = null;
-				boolean foundATSymbol = false;
-
-				try {
-
-					// Reads from the text file
-					// This reads everything and the short description too
-					while ((line = fr.readLine()) != null) {
-						desc += line;
-						if (line.contains("@")) {
-							foundATSymbol = true;
-						}
-						if (!foundATSymbol) {
-							shortInfo += line;
-						}
-					}
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-
-				// Replaces the @ character in the text file with and empty string so that the
-				// character won't pop up in the description
-				desc = desc.replace("@", "");
-
-				Mercury mer = new Mercury(desc, shortInfo);
-
-				mer.bulidMercuryJFrame(fr);
+				merInfo.bulidMercuryJFrame();
 			}
 		});
 	}
 
-	public static void venusAction(BufferedReader fr) {
+	public static Venus getVenus(BufferedReader fr) {
+		String desc = "";
+		String shortInfo = "";
+		String line = null;
+		boolean foundATSymbol = false;
+
+		try {
+
+			// Reads from the text file
+			// This reads everything and the short description too
+			while ((line = fr.readLine()) != null) {
+				desc += line;
+				if (line.contains("@")) {
+					foundATSymbol = true;
+				}
+				if (!foundATSymbol) {
+					shortInfo += "<br>" + line;
+				}
+			}
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		// Replaces the @ character in the text file with and empty string so that the
+		// character won't pop up in the description
+		desc = desc.replace("@", "");
+
+		return new Venus(desc, "<html>" + shortInfo + "</html>");
+
+	}
+
+	public static void venusAction() {
 		venus.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String desc = "";
-				String shortInfo = "";
-				String line = null;
-				boolean foundATSymbol = false;
-
-				try {
-
-					// Reads from the text file
-					// This reads everything and the short description too
-					while ((line = fr.readLine()) != null) {
-						desc += line;
-						if (line.contains("@")) {
-							foundATSymbol = true;
-						}
-						if (!foundATSymbol) {
-							shortInfo += line;
-						}
-					}
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-
-				// Replaces the @ character in the text file with and empty string so that the
-				// character won't pop up in the description
-				desc = desc.replace("@", "");
-
-				Venus ven = new Venus(desc, shortInfo);
-
-				ven.bulidVenusJFrame(fr);
+				venusInfo.bulidVenusJFrame();
 			}
 		});
 	}
 
-	public static void earthAction(BufferedReader fr) {
+	public static Earth getEarth(BufferedReader fr) {
+		String desc = "";
+		String shortInfo = "";
+		String line = null;
+		boolean foundATSymbol = false;
+
+		try {
+
+			// Reads from the text file
+			// This reads everything and the short description too
+			while ((line = fr.readLine()) != null) {
+				desc += line;
+				if (line.contains("@")) {
+					foundATSymbol = true;
+				}
+				if (!foundATSymbol) {
+					shortInfo += "<br>" + line;
+				}
+			}
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		// Replaces the @ character in the text file with and empty string so that the
+		// character won't pop up in the description
+		desc = desc.replace("@", "");
+
+		return new Earth(desc, "<html>" + shortInfo + "</html>");
+	}
+
+	public static void earthAction() {
 		earth.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String desc = "";
-				String shortInfo = "";
-				String line = null;
-				boolean foundATSymbol = false;
-
-				try {
-
-					// Reads from the text file
-					// This reads everything and the short description too
-					while ((line = fr.readLine()) != null) {
-						desc += line;
-						if (line.contains("@")) {
-							foundATSymbol = true;
-						}
-						if (!foundATSymbol) {
-							shortInfo += line;
-						}
-					}
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-
-				// Replaces the @ character in the text file with and empty string so that the
-				// character won't pop up in the description
-				desc = desc.replace("@", "");
-
-				Earth earth = new Earth(desc, shortInfo);
-
-				earth.bulidEarthJFrame(fr);
+				earthInfo.bulidEarthJFrame();
 			}
 		});
 	}

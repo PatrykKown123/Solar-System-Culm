@@ -21,10 +21,11 @@ public class Sun {
 	}
 
 	// Builds the Sun's JFrame when the sun is clicked
-	public void bulidSunJFrame(BufferedReader fr) {
+	public void bulidSunJFrame() {
 		JFrame frame = new JFrame("The Sun");
 
 		frame.setSize(new Dimension(width, height));
+
 		// Gets the ImageIcon and converts it to a Image and make it fit to the size of
 		// the JFrame and then converts it back to a ImageIcon
 		ImageIcon icon = new ImageIcon(Sun.class.getResource("Sun.jpg"));
@@ -36,14 +37,21 @@ public class Sun {
 		layers.setLayout(null);
 		JLabel desc = new JLabel("<html><H3>" + info + "</H3></html>");
 
+		// Changes the text to white
 		desc.setForeground(Color.WHITE);
+
+		// Adds the the image and the description to the JLayeredPane. JLayeredPane's
+		// "add" method adds a component and takes a value to determine which layer to
+		// put the component on. The higher the number (refer to the second augment of
+		// add), it will be more on "top" of other layers. The lower, it means it will
+		// be more on the "bottom" of the pane.
 		layers.add(imageLabel, new Integer(1));
 		layers.add(desc, new Integer(2));
 
 		imageLabel.setBounds(0, 0, width, height);
-
 		desc.setBounds(0, 200, width - 30, height - 200);
 
+		// Adds the JLayeredPane to the JFrame
 		frame.add(layers);
 
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

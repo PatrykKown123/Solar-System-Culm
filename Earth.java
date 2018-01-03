@@ -17,7 +17,7 @@ public class Earth {
 		this.shortInfo = shortInfo;
 	}
 
-	public void bulidEarthJFrame(BufferedReader fr) {
+	public void bulidEarthJFrame() {
 		JFrame frame = new JFrame("Earth");
 
 		frame.setSize(new Dimension(width, height));
@@ -46,14 +46,6 @@ public class Earth {
 		frame.setLocationRelativeTo(null);
 
 		frame.setVisible(true);
-	}
-
-	public String getInfo() {
-		return info;
-	}
-
-	public void setInfo(String info) {
-		this.info = info;
 	}
 
 	public String getShortInfo() {

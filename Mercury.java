@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package culminating;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -14,64 +8,52 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
-/**
- *
- * @author 557917812
- */
 public class Mercury {
 
-    private String info, shortInfo;
-    private final int width = 900, height = 600;
+	private String info, shortInfo;
+	private final int width = 900, height = 600;
 
-    public Mercury(String fr, String shortInfo) {
-        info = fr;
-        this.shortInfo = shortInfo;
-    }
+	public Mercury(String fr, String shortInfo) {
+		info = fr;
+		this.shortInfo = shortInfo;
+	}
 
-    public void bulidMercuryJFrame(BufferedReader fr) {
-        JFrame frame = new JFrame("Mercury");
+	public void bulidMercuryJFrame() {
+		JFrame frame = new JFrame("Mercury");
 
-        frame.setSize(new Dimension(width, height));
-        // Gets the ImageIcon and converts it to a Image and make it fit to the size of
-        // the JFrame and then converts it back to a ImageIcon
-        ImageIcon icon = new ImageIcon(Sun.class.getResource("mercury2.jpg"));
-        Image image = icon.getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
-        icon = new ImageIcon(image);
+		frame.setSize(new Dimension(width, height));
 
-        JLabel imageLabel = new JLabel(icon);
-        JLayeredPane layers = new JLayeredPane();
-        layers.setLayout(null);
-        JLabel desc = new JLabel("<html><H3>" + info + "</H3></html>");
+		// Gets the ImageIcon and converts it to a Image and make it fit to the size of
+		// the JFrame and then converts it back to a ImageIcon
+		ImageIcon icon = new ImageIcon(Sun.class.getResource("mercury2.jpg"));
+		Image image = icon.getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
+		icon = new ImageIcon(image);
 
-        desc.setForeground(Color.WHITE);
-        layers.add(imageLabel, new Integer(1));
-        layers.add(desc, new Integer(2));
+		JLabel imageLabel = new JLabel(icon);
+		JLayeredPane layers = new JLayeredPane();
+		layers.setLayout(null);
+		JLabel desc = new JLabel("<html><H3>" + info + "</H3></html>");
 
-        imageLabel.setBounds(0, 0, width, height);
+		desc.setForeground(Color.WHITE);
+		layers.add(imageLabel, new Integer(1));
+		layers.add(desc, new Integer(2));
 
-        desc.setBounds(0, 200, width, height);
+		imageLabel.setBounds(0, 0, width, height);
+		desc.setBounds(0, 100, width, height);
 
-        frame.add(layers);
+		frame.add(layers);
 
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
 
-        frame.setVisible(true);
-    }
+		frame.setVisible(true);
+	}
 
-    public String getInfo() {
-        return info;
-    }
+	public String getShortInfo() {
+		return shortInfo;
+	}
 
-    public void setInfo(String info) {
-        this.info = info;
-    }
-
-    public String getShortInfo() {
-        return shortInfo;
-    }
-
-    public void setShortInfo(String shortInfo) {
-        this.shortInfo = shortInfo;
-    }
+	public void setShortInfo(String shortInfo) {
+		this.shortInfo = shortInfo;
+	}
 }
