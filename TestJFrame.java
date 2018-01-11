@@ -20,6 +20,8 @@ import java.text.AttributedCharacterIterator;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -31,6 +33,7 @@ public class TestJFrame {
 	static Mercury merInfo = null;
 	static Venus venusInfo = null;
 	static Earth earthInfo = null;
+	static Mars marsInfo = null;
 
 	public static void main(String[] args) throws IOException {
 
@@ -46,37 +49,42 @@ public class TestJFrame {
 		BufferedReader descBR4 = new BufferedReader(
 				new InputStreamReader(TestJFrame.class.getResourceAsStream("earth facts.txt")));
 
+		BufferedReader descBR5 = new BufferedReader(
+				new InputStreamReader(TestJFrame.class.getResourceAsStream("mars facts.txt")));
+
 		// The JFrame
-		JFrame f = new JFrame("Anton's JFrame.");
+		JFrame f = new JFrame("Anton's & Patryk's culminating.");
 
 		// Here we make the buttons
-		sun = new PlanetButton("Sun", Color.yellow, 0, 300, 250, 250,
-				new ImageIcon(TestJFrame.class.getResource("sun2.jpg")));
+		sun = new PlanetButton("Sun", Color.black, 0, 300, 250, 250,
+				new ImageIcon(TestJFrame.class.getResource("Sun.png")));
 
-		mercury = new PlanetButton("Mercury", Color.gray, 300, 408, 35, 35,
-				new ImageIcon(TestJFrame.class.getResource("mercury.jpg")));
+		mercury = new PlanetButton("Mercury", Color.black, 300, 408, 35, 35,
+				new ImageIcon(TestJFrame.class.getResource("mercury.png")));
 
-		venus = new PlanetButton("Venus", Color.DARK_GRAY, 380, 397, 55, 55,
-				new ImageIcon(TestJFrame.class.getResource("venus.jpg")));
+		venus = new PlanetButton("Venus", Color.black, 380, 397, 55, 55,
+				new ImageIcon(TestJFrame.class.getResource("venus.png")));
 
-		earth = new PlanetButton("Earth", Color.BLUE, 490, 395, 60, 60,
-				new ImageIcon(TestJFrame.class.getResource("earth.jpg")));
+		earth = new PlanetButton("Earth", Color.black, 490, 395, 60, 60,
+				new ImageIcon(TestJFrame.class.getResource("earth.png")));
 
-		mars = new PlanetButton("Mars", Color.red, 600, 403, 45, 45,
-				new ImageIcon(TestJFrame.class.getResource("mars.jpg")));
+		mars = new PlanetButton("Mars", Color.black, 600, 403, 45, 45,
+				new ImageIcon(TestJFrame.class.getResource("mars.png")));
 
-		jupiter = new PlanetButton("Jupiter", Color.cyan, 720, 377, 100, 100,
-				new ImageIcon(TestJFrame.class.getResource("jupiter.jpg")));
+		jupiter = new PlanetButton("Jupiter", Color.black, 700, 367, 118, 118,
+				new ImageIcon(TestJFrame.class.getResource("jupiter.png")));
 
-		saturn = new PlanetButton("Saturn", Color.YELLOW, 900, 383, 90, 90,
-				new ImageIcon(TestJFrame.class.getResource("saturn.jpg")));
+		saturn = new PlanetButton("Saturn", Color.black, 870, 373, 120, 120,
+				new ImageIcon(TestJFrame.class.getResource("saturn.png")));
 
-		uranus = new PlanetButton("Uranus", Color.blue, 1050, 390, 75, 75,
-				new ImageIcon(TestJFrame.class.getResource("uranus.jpg")));
+		uranus = new PlanetButton("Uranus", Color.black, 1050, 390, 75, 75,
+				new ImageIcon(TestJFrame.class.getResource("uranus.png")));
 
-		neptune = new PlanetButton("Neptune", Color.blue, 1175, 387, 75, 75,
-				new ImageIcon(TestJFrame.class.getResource("neptune.jpg")));
-		JPanel p = new JPanel();
+		neptune = new PlanetButton("Neptune", Color.black, 1175, 387, 75, 75,
+				new ImageIcon(TestJFrame.class.getResource("neptune.png")));
+
+		JLabel p = new JLabel();
+		p.setIcon(new ImageIcon(TestJFrame.class.getResource("SpaceBackground.png")));
 
 		// Sets the size of the JFrame by pixels
 		f.setSize(new Dimension(1400, 800));
@@ -105,36 +113,39 @@ public class TestJFrame {
 		// Adds the panel to the JFrame, with all the buttons on it
 		f.add(p);
 
-		// sets the background color of the JFrame to black
-		p.setBackground(Color.BLACK);
-
-		sunInfo = getSun(descBR);
+		// Stores the information into variables and make the buttons clickable
+		sunInfo = getSunInfo(descBR);
 		addSunAction();
 
-		merInfo = getMercury(descBR2);
-		mercuryAction();
+		merInfo = getMercuryInfo(descBR2);
+		addMercuryAction();
 
-		venusInfo = getVenus(descBR3);
-		venusAction();
-		earthInfo = getEarth(descBR4);
-		earthAction();
+		venusInfo = getVenusInfo(descBR3);
+		addVenusAction();
 
-		marsAction();
-		jupiterAction();
-		saturnAction();
-		uranusAction();
-		neptuneAction();
+		earthInfo = getEarthInfo(descBR4);
+		addEarthAction();
 
+		marsInfo = getMarsInfo(descBR5);
+		addMarsAction();
+
+		addJupiterAction();
+		addSaturnAction();
+		addUranusAction();
+		addNeptuneAction();
+
+		// Displays the information when you put your mouse over the planet
 		sun.setToolTipText(sunInfo.getShortInfo());
 		mercury.setToolTipText(merInfo.getShortInfo());
 		venus.setToolTipText(venusInfo.getShortInfo());
 		earth.setToolTipText(earthInfo.getShortInfo());
+		mars.setToolTipText(marsInfo.getShortInfo());
 
 		// Makes the JFrame visible
 		f.setVisible(true);
 	}
 
-	static Sun getSun(BufferedReader fr) {
+	static Sun getSunInfo(BufferedReader fr) {
 		String desc = "";
 		String shortInfo = "";
 		String line = null;
@@ -142,7 +153,7 @@ public class TestJFrame {
 
 		try {
 			// Reads from the text file
-			// This reads everything and the short description too
+			// This reads everything and the short description as well
 			while ((line = fr.readLine()) != null) {
 				desc += line;
 				if (line.contains("@")) {
@@ -173,7 +184,7 @@ public class TestJFrame {
 		});
 	}
 
-	public static Mercury getMercury(BufferedReader fr) {
+	public static Mercury getMercuryInfo(BufferedReader fr) {
 		String desc = "";
 		String shortInfo = "";
 		String line = null;
@@ -182,7 +193,7 @@ public class TestJFrame {
 		try {
 
 			// Reads from the text file
-			// This reads everything and the short description too
+			// This reads everything and the short description as well
 			while ((line = fr.readLine()) != null) {
 				desc += line;
 				if (line.contains("@")) {
@@ -203,7 +214,7 @@ public class TestJFrame {
 		return new Mercury(desc, "<html>" + shortInfo + "</html>");
 	}
 
-	public static void mercuryAction() {
+	public static void addMercuryAction() {
 		mercury.addActionListener(new ActionListener() {
 
 			@Override
@@ -213,7 +224,7 @@ public class TestJFrame {
 		});
 	}
 
-	public static Venus getVenus(BufferedReader fr) {
+	public static Venus getVenusInfo(BufferedReader fr) {
 		String desc = "";
 		String shortInfo = "";
 		String line = null;
@@ -222,7 +233,7 @@ public class TestJFrame {
 		try {
 
 			// Reads from the text file
-			// This reads everything and the short description too
+			// This reads everything and the short description as well
 			while ((line = fr.readLine()) != null) {
 				desc += line;
 				if (line.contains("@")) {
@@ -244,7 +255,7 @@ public class TestJFrame {
 
 	}
 
-	public static void venusAction() {
+	public static void addVenusAction() {
 		venus.addActionListener(new ActionListener() {
 
 			@Override
@@ -254,7 +265,7 @@ public class TestJFrame {
 		});
 	}
 
-	public static Earth getEarth(BufferedReader fr) {
+	public static Earth getEarthInfo(BufferedReader fr) {
 		String desc = "";
 		String shortInfo = "";
 		String line = null;
@@ -263,7 +274,7 @@ public class TestJFrame {
 		try {
 
 			// Reads from the text file
-			// This reads everything and the short description too
+			// This reads everything and the short description as well
 			while ((line = fr.readLine()) != null) {
 				desc += line;
 				if (line.contains("@")) {
@@ -284,7 +295,7 @@ public class TestJFrame {
 		return new Earth(desc, "<html>" + shortInfo + "</html>");
 	}
 
-	public static void earthAction() {
+	public static void addEarthAction() {
 		earth.addActionListener(new ActionListener() {
 
 			@Override
@@ -294,17 +305,47 @@ public class TestJFrame {
 		});
 	}
 
-	public static void marsAction() {
+	public static Mars getMarsInfo(BufferedReader fr) {
+		String desc = "";
+		String shortInfo = "";
+		String line = null;
+		boolean foundATSymbol = false;
+
+		try {
+
+			// Reads from the text file
+			// This reads everything and the short description as well
+			while ((line = fr.readLine()) != null) {
+				desc += line;
+				if (line.contains("@")) {
+					foundATSymbol = true;
+				}
+				if (!foundATSymbol) {
+					shortInfo += "<br>" + line;
+				}
+			}
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		// Replaces the @ character in the text file with and empty string so that the
+		// character won't pop up in the description
+		desc = desc.replace("@", "");
+
+		return new Mars(desc, "<html>" + shortInfo + "</html>");
+	}
+
+	public static void addMarsAction() {
 		mars.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "You clicked on Mars");
+				marsInfo.bulidMarsJFrame();
 			}
 		});
 	}
 
-	public static void jupiterAction() {
+	public static void addJupiterAction() {
 		jupiter.addActionListener(new ActionListener() {
 
 			@Override
@@ -314,7 +355,7 @@ public class TestJFrame {
 		});
 	}
 
-	public static void saturnAction() {
+	public static void addSaturnAction() {
 		saturn.addActionListener(new ActionListener() {
 
 			@Override
@@ -324,7 +365,7 @@ public class TestJFrame {
 		});
 	}
 
-	public static void uranusAction() {
+	public static void addUranusAction() {
 		uranus.addActionListener(new ActionListener() {
 
 			@Override
@@ -334,7 +375,7 @@ public class TestJFrame {
 		});
 	}
 
-	public static void neptuneAction() {
+	public static void addNeptuneAction() {
 		neptune.addActionListener(new ActionListener() {
 
 			@Override
