@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.event.WindowAdapter;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -8,7 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
 public class Saturn {
-	
 	private String info, shortInfo;
 
 	private final int width = 900, height = 600;
@@ -25,7 +25,7 @@ public class Saturn {
 
 		// Gets the ImageIcon and converts it to a Image and make it fit to the size of
 		// the JFrame and then converts it back to a ImageIcon
-		ImageIcon icon = new ImageIcon(Sun.class.getResource("saturn.jpg"));
+		ImageIcon icon = new ImageIcon(Sun.class.getResource("Saturn2.png"));
 		Image image = icon.getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
 		icon = new ImageIcon(image);
 
@@ -50,9 +50,17 @@ public class Saturn {
 
 		// Adds the JLayeredPane to the JFrame
 		frame.add(layers);
+		frame.setResizable(false);
 
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
+
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+				TestJFrame.satCount--;
+			}
+		});
 
 		frame.setVisible(true);
 	}
@@ -64,5 +72,4 @@ public class Saturn {
 	public void setShortInfo(String shortInfo) {
 		this.shortInfo = shortInfo;
 	}
-
 }

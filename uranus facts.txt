@@ -1,7 +1,14 @@
-The seventh planet from the sun with the third largest diameter in our solar system, Uranus is very cold and windy. The ice giant is 
-surrounded by 13 faint rings and 27 small moons as it rotates at a nearly 90-degree angle from the plane of its orbit. This unique tilt 
-makes Uranus appear to spin on its side, orbiting the sun like a rolling ball. The first planet found with the aid of a telescope, Uranus
- was discovered in 1781 by astronomer William Herschel, although he originally thought it was either a comet or a star. It was two years 
-later that the object was universally accepted as a new planet, in part because of observations by astronomer Johann Elert Bode. William 
-Herschel tried unsuccessfully to name his discovery Georgium Sidus after King George III. Instead the planet was named for Uranus, the 
-Greek god of the sky, as suggested by Johann Bode.
+Uranus is the seventh planet from the Sun. It has the third-largest 
+planetary radius and fourth-largest planetary mass in the Solar System. 
+@Uranus is similar in composition to Neptune, and both have different 
+bulk chemical composition from that of the larger gas giants Jupiter 
+and Saturn. For this reason, scientists often classify Uranus and 
+Neptune as "ice giants" to distinguish them from the gas giants. 
+Uranus's atmosphere is similar to Jupiter's and Saturn's in its 
+primary composition of hydrogen and helium, but it contains more 
+"ices" such as water, ammonia, and methane, along with traces of 
+other hydrocarbons. It is the coldest planetary atmosphere in the
+Solar System, with a minimum temperature of 49 K (224 °C; 371 °F), 
+and has a complex, layered cloud structure with water thought to 
+make up the lowest clouds and methane the uppermost layer of clouds.
+The interior of Uranus is mainly composed of ices and rock.

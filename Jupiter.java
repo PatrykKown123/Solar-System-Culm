@@ -8,24 +8,24 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
-public class Uranus {
+public class Jupiter {
 	private String info, shortInfo;
 
 	private final int width = 900, height = 600;
 
-	public Uranus(String wholeInfo, String shortInfo) {
+	public Jupiter(String wholeInfo, String shortInfo) {
 		info = wholeInfo;
 		this.shortInfo = shortInfo;
 	}
 
-	public void bulidUranusJFrame() {
-		JFrame frame = new JFrame("Uranus");
+	public void bulidJupiterJFrame() {
+		JFrame frame = new JFrame("Jupiter");
 
 		frame.setSize(new Dimension(width, height));
 
 		// Gets the ImageIcon and converts it to a Image and make it fit to the size of
 		// the JFrame and then converts it back to a ImageIcon
-		ImageIcon icon = new ImageIcon(Sun.class.getResource("uranus2.jpg"));
+		ImageIcon icon = new ImageIcon(Sun.class.getResource("jupiter2.jpg"));
 		Image image = icon.getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
 		icon = new ImageIcon(image);
 
@@ -58,7 +58,7 @@ public class Uranus {
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-				TestJFrame.urCount--;
+				TestJFrame.jupCount--;
 			}
 		});
 

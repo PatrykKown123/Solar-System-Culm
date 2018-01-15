@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.event.WindowAdapter;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -49,9 +50,17 @@ public class Mars {
 
 		// Adds the JLayeredPane to the JFrame
 		frame.add(layers);
+		frame.setResizable(false);
 
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
+
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+				TestJFrame.marCount--;
+			}
+		});
 
 		frame.setVisible(true);
 	}

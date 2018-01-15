@@ -2,6 +2,7 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.event.WindowAdapter;
 import java.io.BufferedReader;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -39,12 +40,20 @@ public class Mercury {
 		layers.add(desc, new Integer(2));
 
 		imageLabel.setBounds(0, 0, width, height);
-		desc.setBounds(0, 100, width, height);
+		desc.setBounds(30, 160, width, height);
 
 		frame.add(layers);
+		frame.setResizable(false);
 
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
+
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+				TestJFrame.merCount--;
+			}
+		});
 
 		frame.setVisible(true);
 	}

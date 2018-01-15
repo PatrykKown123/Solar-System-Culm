@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.event.WindowAdapter;
 import java.io.BufferedReader;
 
 import javax.swing.ImageIcon;
@@ -24,7 +25,7 @@ public class Earth {
 
 		// Gets the ImageIcon and converts it to a Image and make it fit to the size of
 		// the JFrame and then converts it back to a ImageIcon
-		ImageIcon icon = new ImageIcon(Sun.class.getResource("earthPopUp.png"));
+		ImageIcon icon = new ImageIcon(Sun.class.getResource("earth2.jpg"));
 		Image image = icon.getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
 		icon = new ImageIcon(image);
 
@@ -41,9 +42,17 @@ public class Earth {
 		desc.setBounds(0, 100, width, height);
 
 		frame.add(layers);
+		frame.setResizable(false);
 
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
+
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+				TestJFrame.earCount--;
+			}
+		});
 
 		frame.setVisible(true);
 	}
@@ -56,4 +65,3 @@ public class Earth {
 		this.shortInfo = shortInfo;
 	}
 }
-
