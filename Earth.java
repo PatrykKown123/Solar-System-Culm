@@ -24,7 +24,7 @@ public class Earth {
 
 		// Gets the ImageIcon and converts it to a Image and make it fit to the size of
 		// the JFrame and then converts it back to a ImageIcon
-		ImageIcon icon = new ImageIcon(Sun.class.getResource("earth.jpg"));
+		ImageIcon icon = new ImageIcon(Sun.class.getResource("earthPopUp.png"));
 		Image image = icon.getImage().getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
 		icon = new ImageIcon(image);
 
@@ -56,3 +56,4 @@ public class Earth {
 		this.shortInfo = shortInfo;
 	}
 }
+
