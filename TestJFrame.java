@@ -34,6 +34,10 @@ public class TestJFrame {
 	static Venus venusInfo = null;
 	static Earth earthInfo = null;
 	static Mars marsInfo = null;
+	static Jupiter jupiterInfo = null; 
+	static Saturn saturnInfo = null;
+	static Uranus uranusInfo = null; 
+	static Neptune neptuneInfo = null;
 
 	public static void main(String[] args) throws IOException {
 
@@ -51,6 +55,18 @@ public class TestJFrame {
 
 		BufferedReader descBR5 = new BufferedReader(
 				new InputStreamReader(TestJFrame.class.getResourceAsStream("mars facts.txt")));
+		
+		BufferedReader descBR6 = new BufferedReader(
+				new InputStreamReader(TestJFrame.class.getResourceAsStream("descBR6.txt")));
+		
+		BufferedReader descBR7 = new BufferedReader(
+				new InputStreamReader(TestJFrame.class.getResourceAsStream("saturn facts.txt")));
+		
+		BufferedReader descBR8 = new BufferedReader(
+				new InputStreamReader(TestJFrame.class.getResourceAsStream("uranus facts.txt")));
+		
+		BufferedReader descBR9 = new BufferedReader(
+				new InputStreamReader(TestJFrame.class.getResourceAsStream("neptune facts.txt")));
 
 		// The JFrame
 		JFrame f = new JFrame("Anton's & Patryk's culminating.");
@@ -60,16 +76,16 @@ public class TestJFrame {
 				new ImageIcon(TestJFrame.class.getResource("Sun.png")));
 
 		mercury = new PlanetButton("Mercury", Color.black, 300, 408, 35, 35,
-				new ImageIcon(TestJFrame.class.getResource("mercury.png")));
+				new ImageIcon(TestJFrame.class.getResource("VeryNewMercury.png")));
 
 		venus = new PlanetButton("Venus", Color.black, 380, 397, 55, 55,
-				new ImageIcon(TestJFrame.class.getResource("venus.png")));
+				new ImageIcon(TestJFrame.class.getResource("NewVenus.png")));
 
 		earth = new PlanetButton("Earth", Color.black, 490, 395, 60, 60,
-				new ImageIcon(TestJFrame.class.getResource("earth.png")));
+				new ImageIcon(TestJFrame.class.getResource("NewEarth.png")));
 
 		mars = new PlanetButton("Mars", Color.black, 600, 403, 45, 45,
-				new ImageIcon(TestJFrame.class.getResource("mars.png")));
+				new ImageIcon(TestJFrame.class.getResource("NewMars.png")));
 
 		jupiter = new PlanetButton("Jupiter", Color.black, 700, 367, 118, 118,
 				new ImageIcon(TestJFrame.class.getResource("jupiter.png")));
@@ -128,10 +144,17 @@ public class TestJFrame {
 
 		marsInfo = getMarsInfo(descBR5);
 		addMarsAction();
-
+		
+		jupiterInfo = getJupiterInfo(descBR6);
 		addJupiterAction();
+		
+		saturnInfo = getSaturnInfo(descBR7);
 		addSaturnAction();
+		
+		uranusInfo = getUranusInfo(descBR8);	
 		addUranusAction();
+		
+		neptuneInfo = getNeptuneInfo(descBR9);
 		addNeptuneAction();
 
 		// Displays the information when you put your mouse over the planet
@@ -140,6 +163,8 @@ public class TestJFrame {
 		venus.setToolTipText(venusInfo.getShortInfo());
 		earth.setToolTipText(earthInfo.getShortInfo());
 		mars.setToolTipText(marsInfo.getShortInfo());
+		jupiter.setToolTipText(jupiterInfo.getShortInfo());
+		saturn.setToolTipText(saturnInfo.getShortInfo());
 
 		// Makes the JFrame visible
 		f.setVisible(true);
@@ -344,15 +369,73 @@ public class TestJFrame {
 			}
 		});
 	}
+	public static Jupiter getJupiterInfo(BufferedReader fr) {
+		String desc = "";
+		String shortInfo = "";
+		String line = null;
+		boolean foundATSymbol = false;
+
+		try {
+
+			// Reads from the text file
+			// This reads everything and the short description as well
+			while ((line = fr.readLine()) != null) {
+				desc += line;
+				if (line.contains("@")) {
+					foundATSymbol = true;
+				}
+				if (!foundATSymbol) {
+					shortInfo += "<br>" + line;
+				}
+			}
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		// Replaces the @ character in the text file with and empty string so that the
+		// character won't pop up in the description
+		desc = desc.replace("@", "");
+
+		return new Jupiter(desc, "<html>" + shortInfo + "</html>");
+	}
 
 	public static void addJupiterAction() {
 		jupiter.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "You clicked on Jupiter");
+				jupiterInfo.bulidJupiterJFrame();
 			}
 		});
+	}
+	public static Saturn getSaturnInfo(BufferedReader fr) {
+		String desc = "";
+		String shortInfo = "";
+		String line = null;
+		boolean foundATSymbol = false;
+
+		try {
+
+			// Reads from the text file
+			// This reads everything and the short description as well
+			while ((line = fr.readLine()) != null) {
+				desc += line;
+				if (line.contains("@")) {
+					foundATSymbol = true;
+				}
+				if (!foundATSymbol) {
+					shortInfo += "<br>" + line;
+				}
+			}
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		// Replaces the @ character in the text file with and empty string so that the
+		// character won't pop up in the description
+		desc = desc.replace("@", "");
+
+		return new Saturn(desc, "<html>" + shortInfo + "</html>");
 	}
 
 	public static void addSaturnAction() {
@@ -360,9 +443,38 @@ public class TestJFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "You clicked on Saturn");
+				saturnInfo.bulidSaturnJFrame();
 			}
 		});
+	}
+	public static Uranus getUranusInfo(BufferedReader fr) {
+		String desc = "";
+		String shortInfo = "";
+		String line = null;
+		boolean foundATSymbol = false;
+
+		try {
+
+			// Reads from the text file
+			// This reads everything and the short description as well
+			while ((line = fr.readLine()) != null) {
+				desc += line;
+				if (line.contains("@")) {
+					foundATSymbol = true;
+				}
+				if (!foundATSymbol) {
+					shortInfo += "<br>" + line;
+				}
+			}
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		// Replaces the @ character in the text file with and empty string so that the
+		// character won't pop up in the description
+		desc = desc.replace("@", "");
+
+		return new Uranus(desc, "<html>" + shortInfo + "</html>");
 	}
 
 	public static void addUranusAction() {
@@ -370,17 +482,47 @@ public class TestJFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "You clicked on Uranus");
+				uranusInfo.bulidUranusJFrame();
 			}
 		});
 	}
+	public static Neptune getNeptuneInfo(BufferedReader fr) {
+		String desc = "";
+		String shortInfo = "";
+		String line = null;
+		boolean foundATSymbol = false;
+
+		try {
+
+			// Reads from the text file
+			// This reads everything and the short description as well
+			while ((line = fr.readLine()) != null) {
+				desc += line;
+				if (line.contains("@")) {
+					foundATSymbol = true;
+				}
+				if (!foundATSymbol) {
+					shortInfo += "<br>" + line;
+				}
+			}
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		// Replaces the @ character in the text file with and empty string so that the
+		// character won't pop up in the description
+		desc = desc.replace("@", "");
+
+		return new Neptune(desc, "<html>" + shortInfo + "</html>");
+	}
+
 
 	public static void addNeptuneAction() {
 		neptune.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "You clicked on Neptune");
+				neptuneInfo.bulidNeptuneJFrame();
 			}
 		});
 	}
