@@ -1,2 +1,0 @@
-# Solar-System-Culm
-FOR ANTON AND PATRYK ONLY 
