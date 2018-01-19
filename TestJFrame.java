@@ -50,11 +50,7 @@ public class TestJFrame {
 	static int nepCount = 0;
 
 	public static void main(String[] args) throws IOException {
-		StartUp sp = new StartUp();
-		sp.createStartScreen();
-	}
 
-	public static void showMainScreen() {
 		BufferedReader descBR = new BufferedReader(
 				new InputStreamReader(TestJFrame.class.getResourceAsStream("sun facts.txt")));
 
